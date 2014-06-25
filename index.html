@@ -1,0 +1,164 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+
+    <title>Device Discovery</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+   
+  <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
+
+  <body style="">
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">Device Discovery</h1>
+       
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <p class="blog-post-meta">June 23, 2014 by <a href="#">Bhavana</a></p>
+
+           
+           <p>We are part of an environment where information is demanded in real time. IoT helps us realize that the more devices
+            we connect to this world
+           , the more information we can harness from them. As a starting step, I already indicated
+           how to connect the Raspberry Pi and Arduino to the Internet and how to send messages to and from them. But unless you know
+           which of your devices are online at any instant, you will not be able to consume this information in realtime.
+            
+           </p>
+            <p>Presence is a powerful feature of PubNub that lets you detect when users enter/leave your app and whether 
+            machines are online.
+             
+            <hr>
+             
+             <p> This post takes you through the steps of detecting any device or machine connected to PubNub on a web-based application
+             using JavaScript.
+              </p> <br>
+
+        
+           
+            <h2>Device Discovery</h2>
+
+			<br>
+            
+       
+
+<p> <strong> STEP 1: </strong> The presence feature is an optional parameter used along with the subscribe call in JS.</p>
+<br>
+<p>BASIC USAGE:
+<pre><code>pubnub.subscribe({
+     channel: "my_channel",
+     presence: function(m){console.log(m)},
+     callback: function(m){console.log(m)}
+ });</code></pre>
+ 
+ <p> The presence feature will output the devices that are online as identified by their UUIDs, along with their timestamp, an action that 
+ indicates join/leave and the occupancy of the channel. This information will be displayed in the console.</p>
+ 
+ <p> But what if you want to consume this information - write it on a screen or store it somewhere? The following code lets you do 
+ just that.
+
+
+<p> <strong> STEP 3: </strong> The JavaScript bringing Presence to life.
+<pre><code>var deviceList[],
+devices =[];
+
+pubnub.subscribe({
+
+    channel: 'iotchannel',
+    presence: function(message,channel){
+        if(message.action == "join"){
+        	devices.push(message.uuid);
+    		deviceList.append("&ltli text-align:
+    		center&gt" + message.uuid + "&lt/li&gt");
+      		}
+        else{
+          devices.splice(devices.indexOf(message.uuid), 1);
+          deviceList.find(message.uuid).remove();
+	}
+ }
+});</code></pre>
+
+
+    		<br>
+    		<p> Here, we define a custom function for presence which basically uses the different actions of a presence event
+    		 that could occur, such as <strong>join</strong> and <strong>leave</strong>. </p>
+    		 <ul>
+    		 <li> If a 'join' occurs, we append the UUID to the list of devices that are online.</li>
+    		 <li> If a 'leave' occurs, we remove that UUID from the list of list of devices that are online.</li>
+    		 </ul>
+    		 
+    		 <p> This way, you have the online users, both in an array called 'devices' and also as list printed on a page.</p>
+    		 
+    	<p> 
+    	This way, you can now be updated on the different devices joining and leaving your network in realtime. 
+    	
+    	</p>
+            
+          </div><!-- /.blog-post -->
+
+        
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h3>PubNub</h3>
+            <p>The PubNub Realtime Network powers thousands of apps, streaming more than 3 million messages a second to over
+             200 million devices a month. 
+             <p><a class="btn btn-default" href="http://www.pubnub.com" role="button">View details »</a></p></p>
+          </div>
+          <div class="sidebar-module">
+            <h3>Related Blog Posts</h3>
+     <ul>
+      	
+              <li><a href = "http://www.pubnub.com/blog/raspberry-pi-to-pubnub-in-less-than-10-lines-of-code/">IoT Raspberry Pi connected to the Dashboard</a></li>
+              
+        </ul>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/banasrini/ArduinoToPubNub">GitHub</a></li>
+              <li><a href="https://twitter.com/PubNub">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <div class="blog-footer">
+      
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+    
+    
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+  
+
+</body></html>
