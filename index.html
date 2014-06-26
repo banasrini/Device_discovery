@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-
-    <title>Real Time Internet of Things Dashboard</title>
+    <title>Device Discovery</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -17,61 +15,36 @@
     
     <link href="styles.css" rel="stylesheet">
 
-  	<link rel="stylesheet" type="text/css" href="font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css">
+    
+    <style type="text/css"></style>
+</head>
 
-  	<style type="text/css"></style>
-  	</head>
-  	<body style="">
 
-  
-
-    
-    
-   
-    <div class = "jumbotron section-main" style = "border-radius:25px; text-align:center">
-    
-    
+<body style="">
+	<div class = "jumbotron section-main" style = "border-radius:25px; text-align:center">
     	<h1 style = "text-align:center">Device Discovery for <b>Internet Of Things</b></h1><br><br>
-		
-    		
-	
-		<br><br><br>
-		<button id="dashboard" class = "btn btn-blue" width = "2500"  align = "right" style ="background-color:red;"
-			>Connect your devices and watch them come online</button>
-			<br></br>
-   			
-		
-		
+	<br><br><br>
+	<button id="dashboard" class = "btn btn-blue" width = "2500"  align = "right" style ="background-color:red;">
+	Connect your devices and watch them come online</button>
+	<br></br>
 		<div id="chat"></div>
-     				<div id = "online">
-						<ul id ="peeps" style = "list-style-position:inside;">
-						<h2  style ="font-size:250%; text-align:center"> Online devices <i class ="fa fa-spinner fa-spin"></i></h2>
-							<li style ="text-align:center;font-size:150%"><b> Pi123 </b></li>
-							<li style ="text-align:center;font-size:150%"><b> Arduino </b></li>
-						</ul>
-					</div>
-    			
-			<br><br><br><br><br><br>
-			
-   	
-   		
-   		
+     		<div id = "online">
+			<ul id ="peeps" style = "list-style-position:inside;">
+				<h2  style ="font-size:250%; text-align:center"> Online devices <i class ="fa fa-spinner fa-spin"></i></h2>
+				<li style ="text-align:center;font-size:150%"><b> Pi123 </b></li>
+				<li style ="text-align:center;font-size:150%"><b> Arduino </b></li>
+			</ul>
+		</div>
+	<br><br><br><br><br><br>
    	</div>
    	
-    	</div>		
-			
-   		</div>
-   	</div>
-   	</div>
-   	
-   
     
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="/Users/bhavana/Desktop/bootstrap/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
  <!--   <script src ="/Users/bhavana/Desktop/bootstrap/scripts/client-arduino.js"></script> -->
   	<script src="discovery.js"></script>
