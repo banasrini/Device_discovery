@@ -5,47 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Device Discovery</title>
+    
+
+    <title>Real Time Internet of Things Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="/Users/bhavana/Desktop/bootstrap/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="style2.css" rel="stylesheet"> 
+    <link href="/Users/bhavana/Desktop/bootstrap/css/jumbotron2.css" rel="stylesheet"> 
     
-    <link href="styles.css" rel="stylesheet">
+    <link href="/Users/bhavana/Desktop/devicedisc.css" rel="stylesheet">
+     <link href="animate.css" rel="stylesheet">
 
-    <style type="text/css"></style>
-</head>
+  	<link rel="stylesheet" type="text/css" href="/Users/bhavana/Desktop/iot/DashboardWebpage/css/font-awesome.min.css">
+
+  	<style type="text/css">
+
+@media only screen and (min-width:961px) { 
+#logo { background-color:white;border-radius:25px; text-align:center;background-image: url('binoo.jpg'); background-size: 400px 600px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    margin-right: 50px; }
+#ondev { font-size:250%; float:left; color: black
+    }
+#bottom { font-size:100%;color: #5A360A; text-align:center;
+    }
+}
+    
+@media only screen and (min-width:1281px) {
+#logo { background-color:white;border-radius:25px; text-align:center;background-image: url('binoo.jpg'); background-size: 600px 600px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    margin-right: 50px; }
+#ondev { font-size:350%; float:left; color: black
+    }
+#bottom { font-size:150%;color: #5A360A; text-align:center;
+    }
+}
+
+#ondev {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-delay: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+</style>
 
 
-<body style="">
-	<div class = "jumbotron section-main" style = "border-radius:25px; text-align:center">
-    	<h1 style = "text-align:center">Device Discovery for <b>Internet Of Things</b></h1><br><br>
-	<br><br><br>
-	<button id="dashboard" class = "btn btn-blue" width = "2500"  align = "right" style ="background-color:red;">
-	Connect your devices and watch them come online</button>
-	<br></br>
-		<div id="chat"></div>
-     		<div id = "online">
-			<ul id ="peeps" style = "list-style-position:inside;">
-				<h2  style ="font-size:250%; text-align:center"> Online devices </h2>
-				<li style ="text-align:center;font-size:150%"><b> Pi123 </b></li>
-				<li style ="text-align:center;font-size:150%"><b> Arduino </b></li>
-			</ul>
+  	</head>
+  	<body style="">
+   
+    <div class = "jumbotron" id ="logo">
+    
+    
+    	<h1 style = "text-align:center; color:#D67E0C">Device Discovery for <b style = "color:#D15B20">Internet Of Things</b></h1><br><br>
+
+		<br><br><br><br>
+				
+		<div class ="row">
+		<div class="col-md-4">
+          		<div id="chat">
+				</div>
+				<div style = "float:left">
+				
+     				<div id = "online">
+						<ul id ="peeps" style = "list-style-position:inside;">
+							<h2  id = "ondev" class ="animated pulse"> Online devices    !!</h2>
+						</ul>
+					</div>
+					<div id = "bottom">
+					<br></br><br></br><br></br><br></br>
+   					</div>
+				</div>	
+		</div>	
+		<div class="col-md-4" >
+			<div class="bubbletry animated fadeInRightBig" >
+				<div class="bubbleInner" id = "devon">
+					<p id ="change">OOO! the Arduino is <b>CONNECTED</b></p>
+				</div>
+				<br><br><br><br><br><br><br><br>
+			</div>	
 		</div>
-	<br><br><br><br><br><br>
-   	</div>
-   	
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div> <!-- end of class row -->
+	
+   	</div>		<!-- end of class jumbotron -->
+
     
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
+    <script src="/Users/bhavana/Desktop/bootstrap/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
     <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-    <script src="discovery.js"></script>
-
-</body>
+    <script>
+     
+    
+    
+setTimeout(function(){
+	var deviceList = $('#peeps');
+	deviceList.append("<br></br>" + "<li class = 'ard' style = 'text-align:center; font-size:250%;color:f87217'>" +"<b>"+ "Arduino" + "</b>"+"</li>")
+	},2000);
 	
-</html>
+	setTimeout(function(){
+	var deviceList = $('#peeps');
+	deviceList.append("<li style = 'text-align:center; font-size:250%;color:f87217'>" +"<b>"+ "Raspberry Pi" + "</b>"+"</li>")
+	},5000);
+ 
+     
+setTimeout(function(){
+	var divTag = document.createElement("div");
+	divTag.id = "div1";
+	divTag.className = 'bubbletry animated fadeInRightBig';
+	divTag.setAttribute('style','padding: 0 20px 0 5px; font-size:150%');
+	divTag.style.border = "3px solid black";
+	divTag.innerHTML = "Now the Pi has been <b>connected</b>!";
+	document.getElementById("devon").appendChild(divTag);
+},4000);
+
+setTimeout(function(){
+	
+	$('#change').text('The arduino left unfortunately :( Bye Bye');
+	},8000);
+	
+	setTimeout(function(){
+	var deviceList = $('#peeps');
+	$("li").remove(".ard");
+	},9000);
+	
+setTimeout(function(){
+var ptag = document.createElement("p");
+	ptag.innerHTML = 'As demonstrated, you will be able to detect instantaneously when your devices are connected and disconnected to this dashboard!! This is enabled by the <b> PubNub Presence </b> feature. Check out <a href ="">Github</a> for the whole code.';
+	document.getElementById("bottom").appendChild(ptag);
+	},10000);
+	
+	
+	
+</script>
+ 
+
+</body></html>
