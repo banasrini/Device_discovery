@@ -9,10 +9,10 @@
     <title>Device Discovery</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
 
    
   <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
@@ -22,7 +22,7 @@
     <div class="container">
 
       <div class="blog-header">
-        <h1 class="blog-title">Device Discovery</h1>
+        <h1 class="blog-title">Device Discovery for Internet of Things!!</h1>
        
       </div>
 
@@ -33,21 +33,33 @@
           <div class="blog-post">
             <p class="blog-post-meta">June 23, 2014 by <a href="#">Bhavana</a></p>
 
+         
            
-           <p>We are part of an environment where information is demanded in real time. IoT helps us realize that the more devices
-            we connect to this world
-           , the more information we can harness from them. As a starting step, I already indicated
-           how to connect the Raspberry Pi and Arduino to the Internet and how to send messages to and from them. But unless you know
-           which of your devices are online at any instant, you will not be able to consume this information in realtime.
+           <p>
             
+            The IoT revolution allow objects with embedded technologies to interact with each other and with the environment. This way, we can connect
+            almost everything around us, leading to more data aggregation. Once we represent a device virtually, we can access it from anywhere.
+            Typical use cases are those  where you would want to gather data and monitor them from a remote location continuously, such as: <br>
+            <ul>
+            	<li> Energy Grids </li>
+            	<li> Healthcare systems </li>
+            	<li> House Automation </li>
+           
            </p>
-            <p>Presence is a powerful feature of PubNub that lets you detect when users enter/leave your app and whether 
-            machines are online.
-             
+           
+           <p>The IoT will take over every industry, locally and globally. It brings networking technology 
+           to places where it was once unavailable. The challenge is to build the right infrastructure. PubNub provides this infrastructure
+           in terms of scalability, reliability and security. 
+           
+           </p>
+            <p>With all these applications and devices, one common requirement is the need to detect when machines or users are online and when
+            they are offline. Presence is a powerful feature of PubNub that lets you do exactly this, all with just one line of code.
+            This application is plus and play. So all you need to do is connect your embedded devices and watch them come online. Once you
+            have this, many features can be built over this, like bi-directional communication between devices. 
             <hr>
              
              <p> This post takes you through the steps of detecting any device or machine connected to PubNub on a web-based application
-             using JavaScript.
+             using JavaScript as also with Java.
               </p> <br>
 
         
@@ -55,7 +67,7 @@
             <h2>Device Discovery</h2>
 
 			<br>
-            
+            <h3> JavaScript</h3>
        
 
 <p> <strong> STEP 1: </strong> The presence feature is an optional parameter used along with the subscribe call in JS.</p>
@@ -68,19 +80,19 @@
  });</code></pre>
  
  <p> The presence feature will output the devices that are online as identified by their UUIDs, along with their timestamp, an action that 
- indicates join/leave and the occupancy of the channel. This information will be displayed in the console.</p>
+ indicates join/leave/timeout and the occupancy of the channel. This information will be displayed in the console.</p>
  
  <p> But what if you want to consume this information - write it on a screen or store it somewhere? The following code lets you do 
  just that.
 
 
-<p> <strong> STEP 3: </strong> The JavaScript bringing Presence to life.
+<p> <strong> STEP 2: </strong> The JavaScript bringing Presence to life.
 <pre><code>var deviceList[],
 devices =[];
 
 pubnub.subscribe({
 
-    channel: 'iotchannel',
+    channel: 'my_channel',
     presence: function(message,channel){
         if(message.action == "join"){
         	devices.push(message.uuid);
@@ -97,19 +109,80 @@ pubnub.subscribe({
 
     		<br>
     		<p> Here, we define a custom function for presence which basically uses the different actions of a presence event
-    		 that could occur, such as <strong>join</strong> and <strong>leave</strong>. </p>
+    		 that could occur, such as <strong>join</strong>,<strong>timeout</strong> and <strong>leave</strong>. </p>
     		 <ul>
     		 <li> If a 'join' occurs, we append the UUID to the list of devices that are online.</li>
-    		 <li> If a 'leave' occurs, we remove that UUID from the list of list of devices that are online.</li>
+    		 <li> If a 'leave or a timeout' occurs, we remove that UUID from the list of list of devices that are online.</li>
+    		 
     		 </ul>
     		 
-    		 <p> This way, you have the online users, both in an array called 'devices' and also as list printed on a page.</p>
+    		 <p>  You now have the online users, both in an array called 'devices' and also as list printed on a page. Check
+    		 out the <a href = "http://banasrini.github.io/Device_discovery/"> demo </a> to see this in action. </p>
     		 
     	<p> 
     	This way, you can now be updated on the different devices joining and leaving your network in realtime. 
     	
     	</p>
-            
+    	
+    	<br><h3>Java</h3>
+    	
+    	<p> <strong> STEP 1: </strong> Presence and hereNow are two features of PubNub that will show you who is online
+    	at any instant. Whether you choose to use JavaScript or Java, the output for prsence is the same. You will get a 
+    	an output in this format : <br></br>
+<pre><code><strong>{"message":"OK","status":200,"uuids":["uuid1"],"service":"Presence",
+"occupancy":1}
+    	</strong></code></pre>
+    	where "uuids" contains a list of the uuids online and occupancy gives the number of online users. </p>
+    	<p>
+    	I will be using the hereNow feature to see 'who's there?'. All you need to provide
+    	is the channel name, and check if there is anyone on that channel. Yes, PubNub really makes our lives easy.</p>
+    	<br>
+    	<p>BASIC USAGE:
+    	<pre><code>pubnub.hereNow("my_channel", new Callback() {
+     public void successCallback(String channel, Object response) {
+         System.out.println(response);
+     }
+     public void errorCallback(String channel, PubnubError error) {
+         System.out.println(error);
+     }
+ });</code></pre> 
+ 
+ This will output the devices that are online, again, identified by the UUIDs. In order to consume this information, all 
+ you need is to modify the callback function a little. The following code shows you how to.</p>
+ 
+ <strong> STEP 2: </strong> 
+<p><pre><code>Callback callback = new Callback() {
+	public void successCallback(String channel, Object response) {
+	    String temp = response.toString();
+	    int start = temp.indexOf('[');
+	    int end = temp.indexOf(']');
+	    for(int index = start+1;index&ltend;index++){
+		    if(temp.charAt(index)!=','){	
+		    	uuid1 = uuid1 + temp.charAt(index);
+		    }
+		    else{
+		    	System.out.println();
+		    }
+	    }
+    	String replaced = uuid1.replace("\""," ");
+    	String[] uuidlist = replaced.split("\\s+");
+    	for (String tempstring : uuidlist){
+    		System.out.println(tempstring);
+    	}	
+	}
+		
+	public void errorCallback(String channel, PubnubError error){
+		System.out.println(error.toString());
+	}
+};
+	
+	public void herenow(){
+		Pubnub pubnub = new Pubnub("demo", "demo");
+		pubnub.hereNow("my_channel", callback);
+	}</code></pre>
+	
+	This code, modifies the information received by the hereNow function, and stores and prints it in an array called
+	'uuidlist'. In this manner, you can now use this information according to your requirements. 
           </div><!-- /.blog-post -->
 
         
@@ -122,18 +195,11 @@ pubnub.subscribe({
              200 million devices a month. 
              <p><a class="btn btn-default" href="http://www.pubnub.com" role="button">View details »</a></p></p>
           </div>
-          <div class="sidebar-module">
-            <h3>Related Blog Posts</h3>
-     <ul>
-      	
-              <li><a href = "http://www.pubnub.com/blog/raspberry-pi-to-pubnub-in-less-than-10-lines-of-code/">IoT Raspberry Pi connected to the Dashboard</a></li>
-              
-        </ul>
-          </div>
+          
           <div class="sidebar-module">
             <h4>Elsewhere</h4>
             <ol class="list-unstyled">
-              <li><a href="https://github.com/banasrini/ArduinoToPubNub">GitHub</a></li>
+              <li><a href="https://github.com/banasrini/Device_discovery">GitHub</a></li>
               <li><a href="https://twitter.com/PubNub">Twitter</a></li>
             </ol>
           </div>
@@ -158,7 +224,7 @@ pubnub.subscribe({
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
+    <script src="script/bootstrap.min.js"></script>
   
 
 </body></html>
