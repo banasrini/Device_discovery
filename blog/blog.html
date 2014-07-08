@@ -9,10 +9,10 @@
     <title>Device Discovery</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/blog.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
 
    
   <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
@@ -36,33 +36,29 @@
          
            
            <p>
-            
-            The IoT revolution allow objects with embedded technologies to interact with each other and with the environment. This way, we can connect
-            almost everything around us, leading to more data aggregation. Once we represent a device virtually, we can access it from anywhere.
-            Typical use cases are those  where you would want to gather data and monitor them from a remote location continuously, such as: <br>
-            <ul>
-            	<li> Energy Grids </li>
-            	<li> Healthcare systems </li>
-            	<li> House Automation </li>
-           
+            IoT is a buzzword none of us can really ignore. One day we have 10 billion devices connected to the internet, the next it goes up to 50 billion. 
+            This is not hard to believe, considering you can just stick a sensor on just about anything and plug it into the internet that rules
+            our lives. 
            </p>
+        
+           <p> Most companies have built applications which you can use to control temperature, collect sensor readings and to talk to 
+           other devices, while others deal with storing all the data that is collected, their storage and security. PubNub on the other hand, lets
+           you build real-time applications for embedded devices without having to worry about the infrastructure. All you need to do 
+           is build a jazzy application with which you can rule the world (Muhahahah!!), and let PubNub take care of the rest. 
            
-           <p>The IoT will take over every industry, locally and globally. It brings networking technology 
-           to places where it was once unavailable. The challenge is to build the right infrastructure. PubNub provides this infrastructure
-           in terms of scalability, reliability and security. 
            
-           </p>
+           <p> This post takes you through the steps of detecting any device or machine connected to PubNub on a web-based application
+             using JavaScript and Java.
+              </p>
+              
             <p>With all these applications and devices, one common requirement is the need to detect when machines or users are online and when
             they are offline. Presence is a powerful feature of PubNub that lets you do exactly this, all with just one line of code.
-            This application is plus and play. So all you need to do is connect your embedded devices and watch them come online. Once you
-            have this, many features can be built over this, like bi-directional communication between devices. 
+            So all you need to do is connect your embedded devices and watch them come online. 
             <hr>
              
-             <p> This post takes you through the steps of detecting any device or machine connected to PubNub on a web-based application
-             using JavaScript as also with Java.
-              </p> <br>
+              <br>
 
-        
+        <P> <a href = "http://banasrini.github.io/Device_discovery/">DEMO</A> . 
            
             <h2>Device Discovery</h2>
 
@@ -109,15 +105,14 @@ pubnub.subscribe({
 
     		<br>
     		<p> Here, we define a custom function for presence which basically uses the different actions of a presence event
-    		 that could occur, such as <strong>join</strong>,<strong>timeout</strong> and <strong>leave</strong>. </p>
+    		 that could occur, such as <strong>join</strong>, <strong>timeout</strong> and <strong>leave</strong>. </p>
     		 <ul>
     		 <li> If a 'join' occurs, we append the UUID to the list of devices that are online.</li>
     		 <li> If a 'leave or a timeout' occurs, we remove that UUID from the list of list of devices that are online.</li>
     		 
     		 </ul>
     		 
-    		 <p>  You now have the online users, both in an array called 'devices' and also as list printed on a page. Check
-    		 out the <a href = "http://banasrini.github.io/Device_discovery/"> demo </a> to see this in action. </p>
+    		 <p>  You now have the online users, both in an array called 'devices' and also as list printed on a page. 
     		 
     	<p> 
     	This way, you can now be updated on the different devices joining and leaving your network in realtime. 
@@ -224,7 +219,7 @@ pubnub.subscribe({
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="script/bootstrap.min.js"></script>
+    <script src="bootstrap.min.js"></script>
   
 
 </body></html>
