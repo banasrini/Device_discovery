@@ -31,7 +31,7 @@
           		deviceList.find(message.uuid).remove();
         		}	
           }
-        });
+});
 
         // subscribing to the channel that the user publishes to
         pubnub.subscribe({
