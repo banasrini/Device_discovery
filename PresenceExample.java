@@ -8,11 +8,11 @@ public class PresenceExample {
 	String uuid1 = "";
 	public void publish(){
 		Pubnub pubnub = new Pubnub("demo","demo");
-		pubnub.setUUID("JAVAbava");
+		pubnub.setUUID("javaUUID");
 		JSONArray jsa = new JSONArray();
-		jsa.put("a");
-		jsa.put("b");
-		pubnub.publish("iotchannel", jsa, new Callback(){
+		jsa.put("Hi there");
+		jsa.put("JavaUUID");
+		pubnub.publish("my_channel", jsa, new Callback(){
 			
 			@Override
 			public void successCallback(String arg0, Object arg1) {
@@ -24,10 +24,10 @@ public class PresenceExample {
 	public void subscribe(){
 	try {
 		Pubnub pubnub = new Pubnub("demo", "demo");
-		pubnub.setUUID("JAVAbava");
+		pubnub.setUUID("javaUUID");
 		String uuid = pubnub.uuid();
 		System.out.print(uuid);
-		pubnub.subscribe("userz", new Callback() {
+		pubnub.subscribe("my_channel", new Callback() {
 
 		      @Override
 		      public void connectCallback(String channel, Object message) {
@@ -104,9 +104,9 @@ public class PresenceExample {
 	
 	public void presence(){
 		Pubnub pubnub = new Pubnub("demo", "demo");
-		pubnub.setUUID("JAVAbava");
+		pubnub.setUUID("javaUUID");
 		try {
-			pubnub.presence("iotchannel", subscribe_callback);
+			pubnub.presence("my_channel", subscribe_callback);
 		} catch (PubnubException e) {
 			System.out.println(e.toString());
 		}
@@ -146,8 +146,8 @@ public class PresenceExample {
 	
 	public void herenow(){
 		Pubnub pubnub = new Pubnub("demo", "demo");
-		pubnub.setUUID("JAVAbava");
-		pubnub.hereNow("iotchannel", callback);
+		pubnub.setUUID("javaUUID");
+		pubnub.hereNow("javaUUID", callback);
 	}
 
 	public static void main(String[] args) {
